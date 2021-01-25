@@ -189,6 +189,11 @@ autocmd FileType python        call PYSET()
 function! PYSET()
   set wrap
   nnoremap <buffer> <F9> :w<cr>:!source env/bin/activate && green -vv<cr>
+  autocmd BufWritePre * %s/\s\+$//e
+  set autoindent
+  set shiftwidth=4
+  set tabstop=4
+  set softtabstop=4
 endfunction
 
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
@@ -204,4 +209,3 @@ endfunction
 inoremap <Tab> <C-R>=MyTabCompletion()<CR>
 " }}}
 
-" setlocal indentexpr=
